@@ -1,0 +1,15 @@
+*.iml
+.gradle
+/.idea
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+/app/build
+*.log
+local.properties
+/app/arch_x86_64/just-cache/
+/app/arch_arm64-v8a/just-cache/
+/app/arch_arm64/
+/jks

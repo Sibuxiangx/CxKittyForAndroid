@@ -1,0 +1,5 @@
+/build
+.cxx
+arch_arm64
+enviroments
+arch_arm64-v8a/assets/boot.zip

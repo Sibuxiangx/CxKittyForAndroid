@@ -1,0 +1,6 @@
+<resources>
+    <style name="RobotoBoldTextAppearance">
+        <item name="android:fontFamily">@font/roboto_condensed_bold</item>
+    </style>
+</resources>
+

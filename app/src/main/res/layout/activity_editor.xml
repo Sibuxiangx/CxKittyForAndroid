@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/materialToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/editor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:id="@+id/run_code"
+        android:layout_margin="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/symbol_input_scroll"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:contentDescription="@string/run_code" />
+
+    <io.github.rosemoe.sora.widget.CodeEditor
+        android:id="@+id/editor"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scrollbarThumbHorizontal="@drawable/scrollbar_thumb_icon"
+        android:scrollbarThumbVertical="@drawable/scrollbar_thumb_icon"
+        android:scrollbarTrackHorizontal="@drawable/scrollbar_track_icon"
+        android:scrollbarTrackVertical="@drawable/scrollbar_track_icon"
+        app:layout_constraintBottom_toBottomOf="@id/symbol_input_scroll"
+        app:layout_constraintTop_toBottomOf="@id/materialToolbar"
+        app:layout_constraintVertical_bias="0.0"
+        app:lnPanelPosition="center"
+        app:lnPanelPositionMode="follow"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <HorizontalScrollView
+        android:id="@+id/symbol_input_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <io.github.rosemoe.sora.widget.SymbolInputView
+            android:id="@+id/symbol_input"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+    </HorizontalScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

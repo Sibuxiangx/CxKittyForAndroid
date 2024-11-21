@@ -1,0 +1,175 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'com.google.devtools.ksp' version '1.9.10-1.0.13'
+}
+
+android {
+    namespace 'github.psicodes.ktxpy'
+    compileSdk 34
+    ndkVersion '25.1.8937393'
+
+    defaultConfig {
+        applicationId "moe.fuqiuluo.xxt"
+        minSdk 26
+        //noinspection ExpiredTargetSdkVersion,EditedTargetSdkVersion
+        targetSdk 28
+        versionName "1.1.1-cxkitty"
+        versionCode 1000110
+        android.packagingOptions.jniLibs.useLegacyPackaging true
+
+        externalNativeBuild {
+            cmake {
+                arguments "-DAPPLICATION_ID:STRING=${applicationId}"
+                cppFlags ''
+            }
+        }
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
+    }
+
+    flavorDimensions += "cpuArch"
+    productFlavors {
+//        arch_arm32 {
+//            dimension 'cpuArch'
+//            versionCode 4 * 1000 + 1
+//            versionNameSuffix "-arm32"
+//        }
+        arch_arm64 {
+            dimension 'cpuArch'
+            versionCode 3 * 1000 + 1
+            versionNameSuffix "-arm64"
+        }
+//        arch_x86 {
+//            dimension 'cpuArch'
+//            versionCode 2 * 1000 + 1
+//            versionNameSuffix "-x86"
+//        }
+        arch_x86_64 {
+            dimension 'cpuArch'
+            versionCode 1 * 1000 + 1
+            versionNameSuffix "-x86_64"
+        }
+    }
+
+    buildFeatures.viewBinding = true
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+        }
+    }
+    kotlinOptions {
+        jvmTarget = "17"
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlin {
+        sourceSets {
+            debug {
+                kotlin.srcDirs("build/generated/ksp/debug/kotlin", "build/generated/ksp/arch_arm64Debug/kotlin")
+            }
+            release {
+                kotlin.srcDirs("build/generated/ksp/release/kotlin", "build/generated/ksp/arch_arm64Release/kotlin")
+            }
+        }
+    }
+    kotlinOptions {
+        freeCompilerArgs += [ "-Xjvm-default=all" ]
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.3"
+    }
+    buildFeatures {
+        compose true
+    }
+    ksp {
+        arg("kotlin.incremental", "true")
+    }
+    splits {
+        abi {
+            enable true
+            reset()
+            include 'arm64-v8a', 'x86_64'
+            universalApk false
+        }
+    }
+    sourceSets {
+        arch_arm64 {
+            sourceSets {
+                assets.srcDirs = ["arch_arm64-v8a/assets"]
+            }
+        }
+        arch_x86_64 {
+            sourceSets {
+                assets.srcDirs = ["arch_x86_64/assets"]
+            }
+        }
+    }
+    packagingOptions {
+        jniLibs {
+            useLegacyPackaging true
+        }
+    }
+    externalNativeBuild {
+        cmake {
+            path file('src/main/cpp/CMakeLists.txt')
+            version '3.22.1'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.*'])
+    //Android Related
+    implementation('androidx.core:core-ktx:1.12.0')
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
+    implementation "androidx.datastore:datastore-preferences:1.0.0"
+    implementation "androidx.datastore:datastore-preferences-core:1.0.0"
+    implementation('androidx.activity:activity-compose:1.8.0')
+    implementation(platform('androidx.compose:compose-bom:2023.10.00'))
+    implementation("androidx.compose.ui:ui")
+    implementation("androidx.compose.runtime:runtime-livedata")
+    implementation("androidx.compose.ui:ui-graphics")
+    implementation("androidx.compose.ui:ui-tooling-preview")
+    implementation("androidx.compose.material3:material3")
+    implementation 'androidx.coordinatorlayout:coordinatorlayout:1.2.0'
+    implementation 'com.google.android.material:material:1.10.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation ('androidx.constraintlayout:constraintlayout:2.1.4')
+    debugImplementation("androidx.compose.ui:ui-tooling")
+    implementation("androidx.compose.ui:ui-tooling-preview")
+
+    // lib AndroidUtilCode by  BlankJ
+    implementation("com.blankj:utilcodex:1.31.1")
+
+    // lib terminal-view and terminal-editor by Termux
+    implementation 'com.github.termux.termux-app:terminal-view:v0.118.1'
+    implementation 'com.github.termux.termux-app:terminal-emulator:v0.118.1'
+    //implementation 'com.github.termux.termux-app:termux-shared:v0.118.1'
+    implementation "org.lsposed.hiddenapibypass:hiddenapibypass:2.0"
+
+    // lib : p7zip by Hzy3774
+    //implementation project(':libp7zip')
+
+    // lib : Sora-editor by Rosemoe
+    implementation 'io.github.Rosemoe.sora-editor:editor'
+    implementation(platform('io.github.Rosemoe.sora-editor:bom:0.22.1'))
+    implementation("io.github.Rosemoe.sora-editor:language-textmate")
+
+    // lib : Compose-Destination by RaamCosta
+    implementation 'io.github.raamcosta.compose-destinations:animations-core:1.9.54'
+    ksp 'io.github.raamcosta.compose-destinations:ksp:1.9.54'
+
+    // Test
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    androidTestImplementation 'androidx.compose.ui:ui-test-junit4:1.5.4'
+}
+

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/text_undo"
+        android:icon="@drawable/undo_icon"
+        android:title="@string/undo"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/text_redo"
+        android:icon="@drawable/redo_icon"
+        android:title="@string/redo"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/current_files"
+        android:icon="@drawable/current_files_icon"
+        android:title="@string/theme_select"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/extra_menu"
+        android:icon="@drawable/menu_icon"
+        app:showAsAction="always"
+        android:title="@string/extra_menu">
+        <menu>
+            <item
+                android:id="@+id/text_save"
+                android:icon="@drawable/text_save_icon"
+                android:title="@string/save"
+                app:showAsAction="always" />
+            <item
+                android:id="@+id/text_file_add"
+                android:icon="@drawable/add_file_icon"
+                android:title="@string/add_file"
+                app:showAsAction="always" />
+            <item
+                android:id="@+id/reset_config"
+                android:icon="@drawable/undo_icon"
+                android:title="@string/reset"
+                app:showAsAction="always" />
+            <item
+                android:id="@+id/text_theme"
+                android:icon="@drawable/theme_selector_icon"
+                android:title="@string/theme_select"
+                app:showAsAction="always" />
+        </menu>
+    </item>
+
+</menu>
+
+<!--
+-->

@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">AutoMirei</string>
+    <string name="undo">Undo</string>
+    <string name="redo">Redo</string>
+    <string name="theme_select">选择主题</string>
+    <string name="save">保存文件</string>
+    <string name="reset">重置配置</string>
+    <string name="add_file">创建文件</string>
+    <string name="message_external_storage_rationale">Access to \"External Storage\" is required to manage its files</string>
+    <string name="run_code">run code</string>
+    <string name="extra_menu">extra menu</string>
+</resources>
